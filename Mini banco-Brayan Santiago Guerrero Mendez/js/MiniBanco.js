@@ -30,7 +30,7 @@ function registrar() {
         `Ingrese una contraseña:\nTenga en cuenta que debe tener minimo 8 caracteres`
       );
 
-      if (password.length >= 2) {
+      if (password.length >= 8) {
         usuarios.push({
           name: name,
           password: password,
