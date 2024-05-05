@@ -1,6 +1,6 @@
 let usuarios = [];
 function ingresar(){
-   let ingreso = parseInt(prompt(`Hola que opcion desea realiza:\n1.Registrarse\n2.Inciar sesion`));
+   let ingreso = parseInt(prompt(`Hola que opción desea realiza:\n1.Registrarse\n2.Inciar sesión `));
 
    switch (ingreso) {
     case 1:
@@ -12,7 +12,7 @@ function ingresar(){
       break;
    
     default:
-      alert(`Opcion no valida`);
+      alert(`Opción no valida `);
       break;
    }
 }
@@ -27,24 +27,24 @@ function registrar() {
     name = prompt("Ingrese un nombre:");
     if (name !== "") {
       password = prompt(
-        `Ingrese una contraseña:\nTenga en cuenta que debe tener minimo 8 caracteres`
+        `Ingrese una contraseña:\nTenga en cuenta que debe tener mínimo 8 caracteres`
       );
 
       if (password.length >= 8) {
         usuarios.push({
           name: name,
           password: password,
-          saldo: saldo,
+          saldo: saldo
         });
-        alert(`Usuario ${name} fue registrado con exito`);
+        alert(`Usuario ${name} fue registrado con éxito`);
         estado = 1;
         ingresar();
       } else {
-        alert(`La contraseña debe tener minimo 8 caracteres`);
+        alert(`La contraseña debe tener mínimo 8 caracteres`);
         estado = 0;
       }
     } else {
-      alert(`El nombre no puede estar vacio`);
+      alert(`El nombre no puede estar vacío`);
       estado = 0;
     }
   } while (estado !== 1);
@@ -75,13 +75,13 @@ function banco(usuario) {
   let retiro;
   let ingreso;
 
-  menu = `Que operacion desea realizar: \n 1.Consultar sueldo \n 2.Retiro \n 3.Ingreso \n 4.Salir`;
+  menu = `Que operación desea realizar: \n 1.Consultar saldo \n 2.Retiro \n 3.Ingreso \n 4.Salir`;
   do {
     operaciones = parseInt(prompt(menu));
 
     switch (operaciones) {
       case 1:
-        alert("Su sueldo es de: " + usuario.saldo);
+        alert("Su saldo es de: " + usuario.saldo);
         break;
 
       case 2:
@@ -109,7 +109,7 @@ function banco(usuario) {
         break;
 
       default:
-        alert("Operacion no valida");
+        alert("Operación  no valida");
         break;
     }
   } while (operaciones < 4);
