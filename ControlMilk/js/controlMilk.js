@@ -123,4 +123,3 @@ function promedioLeche() {
 
   ingresar(); 
 }
-ingresar();

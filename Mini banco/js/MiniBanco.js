@@ -1,4 +1,5 @@
 let usuarios = [];
+
 function ingresar() {
   let i = 0;
   do {
@@ -7,7 +8,6 @@ function ingresar() {
         `Bienvenido(a), ¿qué opción desea realizar?\n1. Registrarse\n2. Iniciar sesión\n3. Salir `
       )
     );
-
     switch (ingreso) {
       case 1:
         i = 1;
@@ -43,7 +43,6 @@ function registrar() {
       password = prompt(
         `Ingrese una contraseña:\nTenga en cuenta que debe tener mínimo 8 caracteres`
       );
-
       if (password.length >= 8) {
         usuarios.push({
           name: name,
@@ -89,7 +88,6 @@ function banco(usuario) {
   menu = `Que operación desea realizar: \n 1.Consultar saldo \n 2.Retiro \n 3.Ingreso \n 4.Salir`;
   do {
     operaciones = parseInt(prompt(menu));
-
     switch (operaciones) {
       case 1:
         i = 0;
@@ -121,6 +119,7 @@ function banco(usuario) {
           );
         }
         break;
+
       case 4:
         i = 1;
         alert("Gracias por su visita");
