@@ -70,7 +70,7 @@ function login() {
 
   nameU = prompt("Ingrese su nombre de usuario: ");
   passwordU = prompt("Ingrese su contraseña");
-  for (i = 0; i < usuarios.length; i++) {
+  for (let i = 0; i < usuarios.length; i++) {
     if (usuarios[i].name === nameU && usuarios[i].password === passwordU) {
       alert(`El usuario ${nameU} se a encontrado en la posición ${i}`);
       banco(usuarios[i]);
