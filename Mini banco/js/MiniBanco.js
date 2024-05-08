@@ -84,17 +84,20 @@ function banco(usuario) {
   let operaciones;
   let retiro;
   let ingreso;
+  let i = 0;
 
   menu = `Que operación desea realizar: \n 1.Consultar saldo \n 2.Retiro \n 3.Ingreso \n 4.Salir`;
   do {
-    operaciones = parseInt(prompt(menu));
+    operaciones = parseInt(prompt(`Que operación desea realizar: \n 1.Consultar saldo \n 2.Retiro \n 3.Ingreso \n 4.Salir`));
 
     switch (operaciones) {
       case 1:
+        i = 1;
         alert("Su saldo es de: " + usuario.saldo);
         break;
 
       case 2:
+        i = 1;
         retiro = parseFloat(prompt("Cuanto dinero desea retirar"));
         if (retiro > usuario.saldo || retiro <= 0) {
           alert("Saldo insuficiente");
@@ -107,6 +110,7 @@ function banco(usuario) {
         break;
 
       case 3:
+        i = 1;
         ingreso = parseFloat(prompt("Cuanto dinero desea ingresar"));
         if (ingreso <= 0) {
           alert("El ingreso debe ser mayor de 0");
@@ -118,13 +122,15 @@ function banco(usuario) {
         }
         break;
       case 4:
+        i = 1;
         alert("Gracias por su visita");
         ingresar();
         break;
 
       default:
+        i = 0;
         alert("Operación  no valida");
         break;
     }
-  } while (operaciones < 4);
+} while (i !== 1);
 }
