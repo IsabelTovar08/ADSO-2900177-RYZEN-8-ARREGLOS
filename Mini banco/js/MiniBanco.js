@@ -1,20 +1,34 @@
 let usuarios = [];
-function ingresar(){
-   let ingreso = parseInt(prompt(`Hola que opción desea realiza:\n1.Registrarse\n2.Inciar sesión `));
+function ingresar() {
+  let i = 0;
+  do {
+    let ingreso = parseInt(
+      prompt(
+        `Bienvenido(a), ¿qué opción desea realizar?\n1. Registrarse\n2. Iniciar sesión\n3. Salir `
+      )
+    );
 
-   switch (ingreso) {
-    case 1:
-      registrar();
-      break;
-   
+    switch (ingreso) {
+      case 1:
+        i = 1;
+        registrar();
+        break;
+
       case 2:
-      login();
-      break;
-   
-    default:
-      alert(`Opción no valida `);
-      break;
-   }
+        i = 1;
+        login();
+        break;
+
+      case 3:
+        alert(`Gracias por usar nuestro servicio`);
+        i = 1;
+        break;
+      default:
+        alert(`Opción no valida `);
+        i = 0;
+        break;
+    }
+  } while (i !== 1);
 }
 
 function registrar() {
@@ -34,7 +48,7 @@ function registrar() {
         usuarios.push({
           name: name,
           password: password,
-          saldo: saldo
+          saldo: saldo,
         });
         alert(`Usuario ${name} fue registrado con éxito`);
         estado = 1;
@@ -57,15 +71,11 @@ function login() {
   nameU = prompt("Ingrese su nombre de usuario: ");
   passwordU = prompt("Ingrese su contraseña");
   for (i = 0; i < usuarios.length; i++) {
-    if (
-      usuarios[i].name === nameU &&
-      usuarios[i].password === passwordU
-    ) {
+    if (usuarios[i].name === nameU && usuarios[i].password === passwordU) {
       alert(`El usuario ${nameU} se a encontrado en la posición ${i}`);
       banco(usuarios[i]);
-    }else{
-
-      alert( 'posición: '+ i + " Usuario o contraseña no se a encontrado ");
+    } else {
+      alert("El usuario no se ha encontrado en la posición: " + i);
     }
   }
 }
@@ -89,8 +99,10 @@ function banco(usuario) {
         if (retiro > usuario.saldo || retiro <= 0) {
           alert("Saldo insuficiente");
         } else {
-          usuario.saldo -= retiro
-          alert(`Se a retirado $${retiro} su nuevo saldo es de: $${usuario.saldo}`);
+          usuario.saldo -= retiro;
+          alert(
+            `Se a retirado $${retiro} su nuevo saldo es de: $${usuario.saldo}`
+          );
         }
         break;
 
@@ -100,7 +112,9 @@ function banco(usuario) {
           alert("El ingreso debe ser mayor de 0");
         } else {
           usuario.saldo += ingreso;
-          alert(`Se ha ingresado $${ingreso} su nuevo saldo es de: $${usuario.saldo}`)
+          alert(
+            `Se ha ingresado $${ingreso} su nuevo saldo es de: $${usuario.saldo}`
+          );
         }
         break;
       case 4:
@@ -114,4 +128,3 @@ function banco(usuario) {
     }
   } while (operaciones < 4);
 }
-
