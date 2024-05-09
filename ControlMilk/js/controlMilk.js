@@ -46,7 +46,6 @@ function control() {
     } else {
       alert("Nombre no valido , Ingrese correctamente ");
       respuesta = 0;
-      break;
     }
   } while (respuesta != 1);
   let precioL, lunes, martes, miercoles, jueves, viernes;
@@ -173,4 +172,3 @@ function promedioLeche() {
 
   ingresar();
 }
-
