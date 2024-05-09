@@ -39,7 +39,8 @@ function registrar() {
 
   do {
     name = prompt("Ingrese un nombre:");
-    if (name !== "") {
+    var regex = new RegExp("^[A-Z]+$", "i");
+    if (regex.test(name)) {
       password = prompt(
         `Ingrese una contraseña:\nTenga en cuenta que debe tener mínimo 8 caracteres`
       );
@@ -75,12 +76,9 @@ function login() {
     if (nameU === "" || passwordU === "") {
       alert("Los datos no pueden estar vacíos");
     } else {
-      let usuario = usuarios.find
-      (
-        function (usuario) {
+      let usuario = usuarios.find(function (usuario) {
         return usuario.name === nameU && usuario.password === passwordU;
-      }
-      );
+      });
 
       if (usuario) {
         alert("Bienvenido(a) " + usuario.name);
@@ -96,7 +94,7 @@ function banco(usuario) {
   let operaciones;
   let retiro;
   let ingreso;
-  let i =0;
+  let i = 0;
 
   menu = `Que operación desea realizar: \n 1.Consultar saldo \n 2.Retiro \n 3.Ingreso \n 4.Salir`;
   do {
