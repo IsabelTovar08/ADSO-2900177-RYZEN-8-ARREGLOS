@@ -35,28 +35,68 @@ function ingresar() {
 }
 
 function control() {
-  let opcion;
+  let respuesta = 0;
+  let nombreF;
   do {
-    let nombreF = prompt("Ingrese el nombre de la finca a registrar");
-    let precioL = parseFloat(prompt("Ingrese el precio por litro de leche de vaca"));
-    let lunes = parseInt(prompt("Ingrese los litros de leche producidos el día lunes"));
-    let martes = parseInt(prompt("Ingrese los litros de leche producidos el día martes"));
-    let miercoles = parseInt(prompt("Ingrese los litros de leche producidos el día miércoles"));
-    let jueves = parseInt(prompt("Ingrese los litros de leche producidos el día jueves"));
-    let viernes = parseInt(prompt("Ingrese los litros de leche producidos el día viernes"));
+    nombreF = prompt("Ingrese el nombre de la finca a registrar");
+    var regex = new RegExp("^[A-Z]+$", "i");
+    if (regex.test(nombreF)) {
+      alert(` Bienvenido  finca ${nombreF}`);
+      respuesta = 1;
+    } else {
+      alert("Nombre no valido , Ingrese correctamente ");
+      respuesta = 0;
+      break;
+    }
+  } while (respuesta != 1);
+  let precioL, lunes, martes, miercoles, jueves, viernes;
 
-    finca.push({
-      nombreF,
-      precioL,
-      lunes,
-      martes,
-      miercoles,
-      jueves,
-      viernes,
-    });
+  do {
+    precioL = parseFloat(
+      prompt("Ingrese el precio por litro de leche de vaca")
+    );
+  } while (isNaN(precioL));
 
-    mostrar();
-  } while (opcion.toLowerCase() === "si");
+  do {
+    lunes = parseInt(
+      prompt("Ingrese los litros de leche producidos el día lunes")
+    );
+  } while (isNaN(lunes));
+
+  do {
+    martes = parseInt(
+      prompt("Ingrese los litros de leche producidos el día martes")
+    );
+  } while (isNaN(martes));
+
+  do {
+    miercoles = parseInt(
+      prompt("Ingrese los litros de leche producidos el día miércoles")
+    );
+  } while (isNaN(miercoles));
+
+  do {
+    jueves = parseInt(
+      prompt("Ingrese los litros de leche producidos el día jueves")
+    );
+  } while (isNaN(jueves));
+
+  do {
+    viernes = parseInt(
+      prompt("Ingrese los litros de leche producidos el día viernes")
+    );
+  } while (isNaN(viernes));
+
+  finca.push({
+    nombreF,
+    precioL,
+    lunes,
+    martes,
+    miercoles,
+    jueves,
+    viernes,
+  });
+  mostrar();
 }
 
 function mostrar() {
@@ -91,18 +131,27 @@ function mostrar() {
   validar();
 }
 function validar() {
-  opcion = prompt("¿Desea ingresar otra Finca? si/no");
-  if (opcion.toLowerCase() == "si") {
-    alert("Ingrese los datos de la nueva finca");
-    control();
-  } else {
-    ingresar();
-  }
+  let respuesta = 0;
+  do {
+    opcion = prompt("¿Desea ingresar otra Finca? si/no");
+    if (opcion.toLowerCase() == "si") {
+      respuesta = 1;
+      alert("Ingrese los datos de la nueva finca");
+      control();
+    } else if (opcion.toLowerCase() == "no") {
+      respuesta = 1;
+      ingresar();
+    } else {
+      respuesta = 0;
+      alert("digite una opcion valida");
+    }
+  } while (respuesta != 1);
 }
 
 function promedioLeche() {
   let sumaT = 0;
   let ingresosT = 0.0;
+  let promedioLeche = 0;
   for (let i = 0; i < finca.length; i++) {
     let sumaTotal =
       finca[i].lunes +
@@ -111,15 +160,17 @@ function promedioLeche() {
       finca[i].jueves +
       finca[i].viernes;
 
-
     sumaT += sumaTotal;
     let ingresos = finca[i].precioL * sumaTotal;
     ingresosT += ingresos;
   }
 
-  let promedioLeche = sumaT / (finca.length * 5);
+  promedioLeche = sumaT / (finca.length * 5);
 
-  alert(`Total de litros: ${sumaT}\nIngresos totales: ${ingresosT}\nPromedio de litros por día: ${promedioLeche}`);
+  alert(
+    `Total de litros: ${sumaT}\nIngresos totales: ${ingresosT}\nPromedio de litros por día: ${promedioLeche}`
+  );
 
-  ingresar(); 
+  ingresar();
 }
+
