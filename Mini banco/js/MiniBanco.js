@@ -1,5 +1,4 @@
 let usuarios = [];
-
 function ingresar() {
   let i = 0;
   do {
@@ -8,6 +7,7 @@ function ingresar() {
         `Bienvenido(a), ¿qué opción desea realizar?\n1. Registrarse\n2. Iniciar sesión\n3. Salir `
       )
     );
+
     switch (ingreso) {
       case 1:
         i = 1;
@@ -43,6 +43,7 @@ function registrar() {
       password = prompt(
         `Ingrese una contraseña:\nTenga en cuenta que debe tener mínimo 8 caracteres`
       );
+
       if (password.length >= 8) {
         usuarios.push({
           name: name,
@@ -67,23 +68,35 @@ function login() {
   let nameU;
   let passwordU;
 
-  nameU = prompt("Ingrese su nombre de usuario: ");
-  passwordU = prompt("Ingrese su contraseña");
-  for (let i = 0; i < usuarios.length; i++) {
-    if (usuarios[i].name === nameU && usuarios[i].password === passwordU) {
-      alert(`El usuario ${nameU} se a encontrado en la posición ${i}`);
-      banco(usuarios[i]);
+  do {
+    nameU = prompt("Ingrese su nombre de usuario");
+    passwordU = prompt("Ingrese su contraseña");
+
+    if (nameU === "" || passwordU === "") {
+      alert("Los datos no pueden estar vacíos");
     } else {
-      alert("El usuario no se ha encontrado en la posición: " + i);
+      let usuario = usuarios.find
+      (
+        function (usuario) {
+        return usuario.name === nameU && usuario.password === passwordU;
+      }
+      );
+
+      if (usuario) {
+        alert("Bienvenido(a) " + usuario.name);
+        banco(usuario);
+      } else {
+        alert("Usuario o contraseña incorrectos");
+      }
     }
-  }
+  } while (nameU === "" || passwordU === "");
 }
 
 function banco(usuario) {
   let operaciones;
   let retiro;
   let ingreso;
-  let i = 0;
+  let i =0;
 
   menu = `Que operación desea realizar: \n 1.Consultar saldo \n 2.Retiro \n 3.Ingreso \n 4.Salir`;
   do {
