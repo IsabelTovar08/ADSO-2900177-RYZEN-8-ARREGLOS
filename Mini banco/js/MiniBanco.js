@@ -85,6 +85,7 @@ function login() {
         banco(usuario);
       } else {
         alert("Usuario o contraseña incorrectos");
+        ingresar()
       }
     }
   } while (nameU === "" || passwordU === "");
@@ -95,6 +96,7 @@ function banco(usuario) {
   let retiro;
   let ingreso;
   let i = 0;
+  let regex = /^[0-9]+$/;
 
   menu = `Que operación desea realizar: \n 1.Consultar saldo \n 2.Retiro \n 3.Ingreso \n 4.Salir`;
   do {
@@ -107,7 +109,10 @@ function banco(usuario) {
 
       case 2:
         i = 0;
-        retiro = parseFloat(prompt("Cuanto dinero desea retirar"));
+        do {
+          
+          retiro = parseFloat(prompt("Cuanto dinero desea retirar"));
+        } while (!regex.test(retiro));
         if (retiro > usuario.saldo || retiro <= 0) {
           alert("Saldo insuficiente");
         } else {
@@ -120,7 +125,9 @@ function banco(usuario) {
 
       case 3:
         i = 0;
-        ingreso = parseFloat(prompt("Cuanto dinero desea ingresar"));
+        do {
+          ingreso = parseFloat(prompt("Cuanto dinero desea ingresar"));
+        } while (!regex.test(ingreso));
         if (ingreso <= 0) {
           alert("El ingreso debe ser mayor de 0");
         } else {
